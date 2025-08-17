@@ -2,15 +2,9 @@ using UnityEngine;
 
 public class ArkanoidMovement : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private GameInputActions inputActions;
+    private void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        inputActions = GameManager.Instance.inputActions;
     }
 }
