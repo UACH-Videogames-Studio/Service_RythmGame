@@ -156,6 +156,15 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Launch"",
+                    ""type"": ""Button"",
+                    ""id"": ""246b7740-ae33-4878-816c-75d52e30f4f3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -235,6 +244,17 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""10ddf054-ea62-4e3a-b21e-2aac4a18e984"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Launch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -277,6 +297,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
         m_Arkanoid = asset.FindActionMap("Arkanoid", throwIfNotFound: true);
         m_Arkanoid_Move = m_Arkanoid.FindAction("Move", throwIfNotFound: true);
         m_Arkanoid_Pause = m_Arkanoid.FindAction("Pause", throwIfNotFound: true);
+        m_Arkanoid_Launch = m_Arkanoid.FindAction("Launch", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Resume = m_UI.FindAction("Resume", throwIfNotFound: true);
@@ -471,6 +492,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
     private List<IArkanoidActions> m_ArkanoidActionsCallbackInterfaces = new List<IArkanoidActions>();
     private readonly InputAction m_Arkanoid_Move;
     private readonly InputAction m_Arkanoid_Pause;
+    private readonly InputAction m_Arkanoid_Launch;
     /// <summary>
     /// Provides access to input actions defined in input action map "Arkanoid".
     /// </summary>
@@ -490,6 +512,10 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Arkanoid/Pause".
         /// </summary>
         public InputAction @Pause => m_Wrapper.m_Arkanoid_Pause;
+        /// <summary>
+        /// Provides access to the underlying input action "Arkanoid/Launch".
+        /// </summary>
+        public InputAction @Launch => m_Wrapper.m_Arkanoid_Launch;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -522,6 +548,9 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @Launch.started += instance.OnLaunch;
+            @Launch.performed += instance.OnLaunch;
+            @Launch.canceled += instance.OnLaunch;
         }
 
         /// <summary>
@@ -539,6 +568,9 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @Launch.started -= instance.OnLaunch;
+            @Launch.performed -= instance.OnLaunch;
+            @Launch.canceled -= instance.OnLaunch;
         }
 
         /// <summary>
@@ -711,6 +743,13 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPause(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Launch" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLaunch(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.
