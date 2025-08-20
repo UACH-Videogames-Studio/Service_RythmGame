@@ -13,4 +13,10 @@ public class BallScript : MonoBehaviour
     {
         rb.AddForce(Vector2.up * initialForce, ForceMode2D.Impulse);
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Tile"))
+        {
+        }
+    }
 }
