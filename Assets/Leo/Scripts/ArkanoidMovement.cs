@@ -59,4 +59,9 @@ public class ArkanoidMovement : MonoBehaviour
             theBallHasBeenInstatiate = true;
         }
     }
+    public void RestartBall()
+    {
+        theBallHasBeenInstatiate = false;
+        ballPosition.GetComponent<SpriteRenderer>().enabled = true;
+    }
 }

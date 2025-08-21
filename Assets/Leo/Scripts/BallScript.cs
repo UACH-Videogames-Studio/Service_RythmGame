@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class BallScript : MonoBehaviour
 {
     [SerializeField] private float initialForce;
@@ -15,8 +14,15 @@ public class BallScript : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Tile"))
+        if (collision.gameObject.CompareTag("DownLimit"))
         {
+            DestroyThis();
         }
+    }
+    private void DestroyThis()
+    {
+        ArkanoidMovement arkanoidMovement = FindAnyObjectByType<ArkanoidMovement>().GetComponent<ArkanoidMovement>();
+        arkanoidMovement.RestartBall();
+        Destroy(gameObject);
     }
 }
