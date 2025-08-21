@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class ArkanoidMovement : MonoBehaviour
@@ -6,14 +7,19 @@ public class ArkanoidMovement : MonoBehaviour
     [SerializeField] private float xMaxLimit;
     [SerializeField] private GameObject ballPosition;
     [SerializeField] private GameObject ball;
+    [SerializeField] private TMP_Text scoreText;
     private GameInputActions inputActions;
     private Rigidbody2D rb;
     private float moveX, newX, movementVector;
     private bool theBallHasBeenInstatiate = false;
+    private int lifes;
+    private void UpdateScore() { scoreText.text = "VIDAS: " + lifes.ToString(); }
     private void Awake()
     {
         inputActions = GameManager.Instance.inputActions;
         theBallHasBeenInstatiate = false;
+        lifes = 3;
+        UpdateScore();
     }
     private void Start()
     {
@@ -59,9 +65,21 @@ public class ArkanoidMovement : MonoBehaviour
             theBallHasBeenInstatiate = true;
         }
     }
+    private void EndGame()
+    {
+    }
     public void RestartBall()
     {
         theBallHasBeenInstatiate = false;
         ballPosition.GetComponent<SpriteRenderer>().enabled = true;
+        lifes--;
+        if (lifes <= 0)
+        {
+            EndGame();
+        }
+        else
+        {
+            UpdateScore();
+        }
     }
 }

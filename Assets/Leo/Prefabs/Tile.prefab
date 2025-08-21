@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2296416631396781028}
   - component: {fileID: 973151884479256754}
-  - component: {fileID: 4607771408778858533}
+  - component: {fileID: 129240584873169717}
   - component: {fileID: 7569570145157966642}
   - component: {fileID: -5831735416210161682}
   m_Layer: 0
@@ -90,8 +90,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &4607771408778858533
-BoxCollider2D:
+--- !u!60 &129240584873169717
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -134,8 +134,17 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.0030454262, y: 0.6377696}
+      - {x: -0.5, y: 0.5}
+      - {x: -0.55684805, y: 0.0036255112}
+      - {x: -0.5, y: -0.5}
+      - {x: 0.0091362875, y: -0.6160165}
+      - {x: 0.5, y: -0.5}
+      - {x: 0.54872686, y: -0.003625724}
+      - {x: 0.5, y: 0.5}
+  m_UseDelaunayMesh: 0
 --- !u!82 &7569570145157966642
 AudioSource:
   m_ObjectHideFlags: 0
