@@ -43,13 +43,12 @@ public class InfinityRunMovement : MonoBehaviour
         jumpCount = 0;
         playerAnimator.SetBool("IsJumping", false);
     }
-    private void TakeDamage()
+    public void TakeDamage()
     {
         Debug.Log("Has taken damage");
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("DownLimit")) StopJump();
-        if (collision.gameObject.CompareTag("Obstacle")) TakeDamage();
     }
 }
