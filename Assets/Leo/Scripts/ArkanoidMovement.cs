@@ -8,6 +8,7 @@ public class ArkanoidMovement : MonoBehaviour
     [SerializeField] private GameObject ballPosition;
     [SerializeField] private GameObject ball;
     [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private GameObject losePannel;
     private GameInputActions inputActions;
     private Rigidbody2D rb;
     private float moveX, newX, movementVector;
@@ -18,6 +19,7 @@ public class ArkanoidMovement : MonoBehaviour
     {
         inputActions = GameManager.Instance.inputActions;
         theBallHasBeenInstatiate = false;
+        //losePannel.SetActive(false);
         lifes = 3;
         UpdateScore();
     }
