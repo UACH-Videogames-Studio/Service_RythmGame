@@ -6,7 +6,12 @@ public class InfinityRunMovement : MonoBehaviour
     private GameInputActions inputActions;
     private int jumpCount = 0;
     private Rigidbody2D playerRigidbody2D;
-    private void Start() { playerRigidbody2D = GetComponent<Rigidbody2D>(); }
+    private Animator playerAnimator;
+    private void Start()
+    {
+        playerRigidbody2D = GetComponent<Rigidbody2D>();
+        playerAnimator = GetComponent<Animator>();
+    }
     private void OnEnable()
     {
         inputActions.InfinityRun.Enable();
@@ -30,10 +35,21 @@ public class InfinityRunMovement : MonoBehaviour
         {
             playerRigidbody2D.linearVelocity = new Vector2(playerRigidbody2D.linearVelocity.x, jumpForce);
             jumpCount++;
+            playerAnimator.SetBool("IsJumping", true);
         }
+    }
+    private void StopJump()
+    {
+        jumpCount = 0;
+        playerAnimator.SetBool("IsJumping", false);
+    }
+    private void TakeDamage()
+    {
+        Debug.Log("Has taken damage");
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("DownLimit")) jumpCount = 0;
+        if (collision.gameObject.CompareTag("DownLimit")) StopJump();
+        if (collision.gameObject.CompareTag("Obstacle")) TakeDamage();
     }
 }

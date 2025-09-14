@@ -29,8 +29,11 @@ public class ObstacleSpawnIR : MonoBehaviour
     private void SpawnObstacle(GameObject prefab)
     {
         GameObject instance = Instantiate(prefab, spawnPoint, Quaternion.identity);
-        ObstacleScript obstacleScript = instance.GetComponent<ObstacleScript>();
-        obstacleScript.SetVelocity(obstacleVelocity);
+        ObstacleScript[] obstacleScripts = instance.GetComponentsInChildren<ObstacleScript>();
+        foreach (ObstacleScript script in obstacleScripts)
+        {
+            script.SetVelocity(obstacleVelocity);
+        }
         StartCoroutine(TimeBetween());
     }
     private IEnumerator TimeBetween()
